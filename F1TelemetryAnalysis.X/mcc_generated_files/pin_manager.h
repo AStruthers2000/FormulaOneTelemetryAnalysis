@@ -1222,6 +1222,882 @@
 
 */
 #define IO_RA7_SetDigitalOutput() (_TRISA7 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RB15, high using LATB15.
+
+  @Description
+    Sets the GPIO pin, RB15, high using LATB15.
+
+  @Preconditions
+    The RB15 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB15 high (1)
+    CharLCD1_RS_SetHigh();
+    </code>
+
+*/
+#define CharLCD1_RS_SetHigh()          (_LATB15 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RB15, low using LATB15.
+
+  @Description
+    Sets the GPIO pin, RB15, low using LATB15.
+
+  @Preconditions
+    The RB15 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB15 low (0)
+    CharLCD1_RS_SetLow();
+    </code>
+
+*/
+#define CharLCD1_RS_SetLow()           (_LATB15 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RB15, using LATB15.
+
+  @Description
+    Toggles the GPIO pin, RB15, using LATB15.
+
+  @Preconditions
+    The RB15 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RB15
+    CharLCD1_RS_Toggle();
+    </code>
+
+*/
+#define CharLCD1_RS_Toggle()           (_LATB15 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RB15.
+
+  @Description
+    Reads the value of the GPIO pin, RB15.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RB15
+    postValue = CharLCD1_RS_GetValue();
+    </code>
+
+*/
+#define CharLCD1_RS_GetValue()         _RB15
+/**
+  @Summary
+    Configures the GPIO pin, RB15, as an input.
+
+  @Description
+    Configures the GPIO pin, RB15, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB15 as an input
+    CharLCD1_RS_SetDigitalInput();
+    </code>
+
+*/
+#define CharLCD1_RS_SetDigitalInput()  (_TRISB15 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RB15, as an output.
+
+  @Description
+    Configures the GPIO pin, RB15, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB15 as an output
+    CharLCD1_RS_SetDigitalOutput();
+    </code>
+
+*/
+#define CharLCD1_RS_SetDigitalOutput() (_TRISB15 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RD4, high using LATD4.
+
+  @Description
+    Sets the GPIO pin, RD4, high using LATD4.
+
+  @Preconditions
+    The RD4 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RD4 high (1)
+    CharLCD1_E_SetHigh();
+    </code>
+
+*/
+#define CharLCD1_E_SetHigh()          (_LATD4 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RD4, low using LATD4.
+
+  @Description
+    Sets the GPIO pin, RD4, low using LATD4.
+
+  @Preconditions
+    The RD4 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RD4 low (0)
+    CharLCD1_E_SetLow();
+    </code>
+
+*/
+#define CharLCD1_E_SetLow()           (_LATD4 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RD4, using LATD4.
+
+  @Description
+    Toggles the GPIO pin, RD4, using LATD4.
+
+  @Preconditions
+    The RD4 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RD4
+    CharLCD1_E_Toggle();
+    </code>
+
+*/
+#define CharLCD1_E_Toggle()           (_LATD4 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RD4.
+
+  @Description
+    Reads the value of the GPIO pin, RD4.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RD4
+    postValue = CharLCD1_E_GetValue();
+    </code>
+
+*/
+#define CharLCD1_E_GetValue()         _RD4
+/**
+  @Summary
+    Configures the GPIO pin, RD4, as an input.
+
+  @Description
+    Configures the GPIO pin, RD4, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD4 as an input
+    CharLCD1_E_SetDigitalInput();
+    </code>
+
+*/
+#define CharLCD1_E_SetDigitalInput()  (_TRISD4 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RD4, as an output.
+
+  @Description
+    Configures the GPIO pin, RD4, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD4 as an output
+    CharLCD1_E_SetDigitalOutput();
+    </code>
+
+*/
+#define CharLCD1_E_SetDigitalOutput() (_TRISD4 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RE4, high using LATE4.
+
+  @Description
+    Sets the GPIO pin, RE4, high using LATE4.
+
+  @Preconditions
+    The RE4 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RE4 high (1)
+    CharLCD1_DB4_SetHigh();
+    </code>
+
+*/
+#define CharLCD1_DB4_SetHigh()          (_LATE4 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RE4, low using LATE4.
+
+  @Description
+    Sets the GPIO pin, RE4, low using LATE4.
+
+  @Preconditions
+    The RE4 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RE4 low (0)
+    CharLCD1_DB4_SetLow();
+    </code>
+
+*/
+#define CharLCD1_DB4_SetLow()           (_LATE4 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RE4, using LATE4.
+
+  @Description
+    Toggles the GPIO pin, RE4, using LATE4.
+
+  @Preconditions
+    The RE4 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RE4
+    CharLCD1_DB4_Toggle();
+    </code>
+
+*/
+#define CharLCD1_DB4_Toggle()           (_LATE4 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RE4.
+
+  @Description
+    Reads the value of the GPIO pin, RE4.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RE4
+    postValue = CharLCD1_DB4_GetValue();
+    </code>
+
+*/
+#define CharLCD1_DB4_GetValue()         _RE4
+/**
+  @Summary
+    Configures the GPIO pin, RE4, as an input.
+
+  @Description
+    Configures the GPIO pin, RE4, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RE4 as an input
+    CharLCD1_DB4_SetDigitalInput();
+    </code>
+
+*/
+#define CharLCD1_DB4_SetDigitalInput()  (_TRISE4 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RE4, as an output.
+
+  @Description
+    Configures the GPIO pin, RE4, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RE4 as an output
+    CharLCD1_DB4_SetDigitalOutput();
+    </code>
+
+*/
+#define CharLCD1_DB4_SetDigitalOutput() (_TRISE4 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RE5, high using LATE5.
+
+  @Description
+    Sets the GPIO pin, RE5, high using LATE5.
+
+  @Preconditions
+    The RE5 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RE5 high (1)
+    CharLCD1_DB5_SetHigh();
+    </code>
+
+*/
+#define CharLCD1_DB5_SetHigh()          (_LATE5 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RE5, low using LATE5.
+
+  @Description
+    Sets the GPIO pin, RE5, low using LATE5.
+
+  @Preconditions
+    The RE5 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RE5 low (0)
+    CharLCD1_DB5_SetLow();
+    </code>
+
+*/
+#define CharLCD1_DB5_SetLow()           (_LATE5 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RE5, using LATE5.
+
+  @Description
+    Toggles the GPIO pin, RE5, using LATE5.
+
+  @Preconditions
+    The RE5 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RE5
+    CharLCD1_DB5_Toggle();
+    </code>
+
+*/
+#define CharLCD1_DB5_Toggle()           (_LATE5 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RE5.
+
+  @Description
+    Reads the value of the GPIO pin, RE5.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RE5
+    postValue = CharLCD1_DB5_GetValue();
+    </code>
+
+*/
+#define CharLCD1_DB5_GetValue()         _RE5
+/**
+  @Summary
+    Configures the GPIO pin, RE5, as an input.
+
+  @Description
+    Configures the GPIO pin, RE5, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RE5 as an input
+    CharLCD1_DB5_SetDigitalInput();
+    </code>
+
+*/
+#define CharLCD1_DB5_SetDigitalInput()  (_TRISE5 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RE5, as an output.
+
+  @Description
+    Configures the GPIO pin, RE5, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RE5 as an output
+    CharLCD1_DB5_SetDigitalOutput();
+    </code>
+
+*/
+#define CharLCD1_DB5_SetDigitalOutput() (_TRISE5 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RE6, high using LATE6.
+
+  @Description
+    Sets the GPIO pin, RE6, high using LATE6.
+
+  @Preconditions
+    The RE6 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RE6 high (1)
+    CharLCD1_DB6_SetHigh();
+    </code>
+
+*/
+#define CharLCD1_DB6_SetHigh()          (_LATE6 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RE6, low using LATE6.
+
+  @Description
+    Sets the GPIO pin, RE6, low using LATE6.
+
+  @Preconditions
+    The RE6 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RE6 low (0)
+    CharLCD1_DB6_SetLow();
+    </code>
+
+*/
+#define CharLCD1_DB6_SetLow()           (_LATE6 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RE6, using LATE6.
+
+  @Description
+    Toggles the GPIO pin, RE6, using LATE6.
+
+  @Preconditions
+    The RE6 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RE6
+    CharLCD1_DB6_Toggle();
+    </code>
+
+*/
+#define CharLCD1_DB6_Toggle()           (_LATE6 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RE6.
+
+  @Description
+    Reads the value of the GPIO pin, RE6.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RE6
+    postValue = CharLCD1_DB6_GetValue();
+    </code>
+
+*/
+#define CharLCD1_DB6_GetValue()         _RE6
+/**
+  @Summary
+    Configures the GPIO pin, RE6, as an input.
+
+  @Description
+    Configures the GPIO pin, RE6, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RE6 as an input
+    CharLCD1_DB6_SetDigitalInput();
+    </code>
+
+*/
+#define CharLCD1_DB6_SetDigitalInput()  (_TRISE6 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RE6, as an output.
+
+  @Description
+    Configures the GPIO pin, RE6, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RE6 as an output
+    CharLCD1_DB6_SetDigitalOutput();
+    </code>
+
+*/
+#define CharLCD1_DB6_SetDigitalOutput() (_TRISE6 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RE7, high using LATE7.
+
+  @Description
+    Sets the GPIO pin, RE7, high using LATE7.
+
+  @Preconditions
+    The RE7 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RE7 high (1)
+    CharLCD1_DB7_SetHigh();
+    </code>
+
+*/
+#define CharLCD1_DB7_SetHigh()          (_LATE7 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RE7, low using LATE7.
+
+  @Description
+    Sets the GPIO pin, RE7, low using LATE7.
+
+  @Preconditions
+    The RE7 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RE7 low (0)
+    CharLCD1_DB7_SetLow();
+    </code>
+
+*/
+#define CharLCD1_DB7_SetLow()           (_LATE7 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RE7, using LATE7.
+
+  @Description
+    Toggles the GPIO pin, RE7, using LATE7.
+
+  @Preconditions
+    The RE7 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RE7
+    CharLCD1_DB7_Toggle();
+    </code>
+
+*/
+#define CharLCD1_DB7_Toggle()           (_LATE7 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RE7.
+
+  @Description
+    Reads the value of the GPIO pin, RE7.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RE7
+    postValue = CharLCD1_DB7_GetValue();
+    </code>
+
+*/
+#define CharLCD1_DB7_GetValue()         _RE7
+/**
+  @Summary
+    Configures the GPIO pin, RE7, as an input.
+
+  @Description
+    Configures the GPIO pin, RE7, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RE7 as an input
+    CharLCD1_DB7_SetDigitalInput();
+    </code>
+
+*/
+#define CharLCD1_DB7_SetDigitalInput()  (_TRISE7 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RE7, as an output.
+
+  @Description
+    Configures the GPIO pin, RE7, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RE7 as an output
+    CharLCD1_DB7_SetDigitalOutput();
+    </code>
+
+*/
+#define CharLCD1_DB7_SetDigitalOutput() (_TRISE7 = 0)
 
 /**
     Section: Function Prototypes

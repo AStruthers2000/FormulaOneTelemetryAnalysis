@@ -46,6 +46,7 @@
   Section: Included Files
 */
 #include "mcc_generated_files/system.h"
+#include "mcc_generated_files/charlcd1.h"
 
 /*
                          Main application
@@ -54,10 +55,12 @@ int main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
+    CHARLCD1_Initialize();
 
     while (1)
     {
         // Add your application code
+        
     }
 
     return 1;
