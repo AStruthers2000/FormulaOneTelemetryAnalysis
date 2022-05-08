@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=mcc_generated_files/pin_manager.c mcc_generated_files/system.c mcc_generated_files/traps.c mcc_generated_files/clock.c mcc_generated_files/mcc.c mcc_generated_files/interrupt_manager.c mcc_generated_files/tmr1.c main.c mcc_generated_files/charlcd1.c
+SOURCEFILES_QUOTED_IF_SPACED=mcc_generated_files/pin_manager.c mcc_generated_files/system.c mcc_generated_files/traps.c mcc_generated_files/clock.c mcc_generated_files/mcc.c mcc_generated_files/interrupt_manager.c mcc_generated_files/tmr1.c mcc_generated_files/charlcd1.c mcc_generated_files/uart2.c main.c app.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/mcc_generated_files/pin_manager.o ${OBJECTDIR}/mcc_generated_files/system.o ${OBJECTDIR}/mcc_generated_files/traps.o ${OBJECTDIR}/mcc_generated_files/clock.o ${OBJECTDIR}/mcc_generated_files/mcc.o ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o ${OBJECTDIR}/mcc_generated_files/tmr1.o ${OBJECTDIR}/main.o ${OBJECTDIR}/mcc_generated_files/charlcd1.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/mcc_generated_files/pin_manager.o.d ${OBJECTDIR}/mcc_generated_files/system.o.d ${OBJECTDIR}/mcc_generated_files/traps.o.d ${OBJECTDIR}/mcc_generated_files/clock.o.d ${OBJECTDIR}/mcc_generated_files/mcc.o.d ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o.d ${OBJECTDIR}/mcc_generated_files/tmr1.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/mcc_generated_files/charlcd1.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/mcc_generated_files/pin_manager.o ${OBJECTDIR}/mcc_generated_files/system.o ${OBJECTDIR}/mcc_generated_files/traps.o ${OBJECTDIR}/mcc_generated_files/clock.o ${OBJECTDIR}/mcc_generated_files/mcc.o ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o ${OBJECTDIR}/mcc_generated_files/tmr1.o ${OBJECTDIR}/mcc_generated_files/charlcd1.o ${OBJECTDIR}/mcc_generated_files/uart2.o ${OBJECTDIR}/main.o ${OBJECTDIR}/app.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/mcc_generated_files/pin_manager.o.d ${OBJECTDIR}/mcc_generated_files/system.o.d ${OBJECTDIR}/mcc_generated_files/traps.o.d ${OBJECTDIR}/mcc_generated_files/clock.o.d ${OBJECTDIR}/mcc_generated_files/mcc.o.d ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o.d ${OBJECTDIR}/mcc_generated_files/tmr1.o.d ${OBJECTDIR}/mcc_generated_files/charlcd1.o.d ${OBJECTDIR}/mcc_generated_files/uart2.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/app.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/mcc_generated_files/pin_manager.o ${OBJECTDIR}/mcc_generated_files/system.o ${OBJECTDIR}/mcc_generated_files/traps.o ${OBJECTDIR}/mcc_generated_files/clock.o ${OBJECTDIR}/mcc_generated_files/mcc.o ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o ${OBJECTDIR}/mcc_generated_files/tmr1.o ${OBJECTDIR}/main.o ${OBJECTDIR}/mcc_generated_files/charlcd1.o
+OBJECTFILES=${OBJECTDIR}/mcc_generated_files/pin_manager.o ${OBJECTDIR}/mcc_generated_files/system.o ${OBJECTDIR}/mcc_generated_files/traps.o ${OBJECTDIR}/mcc_generated_files/clock.o ${OBJECTDIR}/mcc_generated_files/mcc.o ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o ${OBJECTDIR}/mcc_generated_files/tmr1.o ${OBJECTDIR}/mcc_generated_files/charlcd1.o ${OBJECTDIR}/mcc_generated_files/uart2.o ${OBJECTDIR}/main.o ${OBJECTDIR}/app.o
 
 # Source Files
-SOURCEFILES=mcc_generated_files/pin_manager.c mcc_generated_files/system.c mcc_generated_files/traps.c mcc_generated_files/clock.c mcc_generated_files/mcc.c mcc_generated_files/interrupt_manager.c mcc_generated_files/tmr1.c main.c mcc_generated_files/charlcd1.c
+SOURCEFILES=mcc_generated_files/pin_manager.c mcc_generated_files/system.c mcc_generated_files/traps.c mcc_generated_files/clock.c mcc_generated_files/mcc.c mcc_generated_files/interrupt_manager.c mcc_generated_files/tmr1.c mcc_generated_files/charlcd1.c mcc_generated_files/uart2.c main.c app.c
 
 
 
@@ -137,17 +137,29 @@ ${OBJECTDIR}/mcc_generated_files/tmr1.o: mcc_generated_files/tmr1.c  .generated_
 	@${RM} ${OBJECTDIR}/mcc_generated_files/tmr1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  mcc_generated_files/tmr1.c  -o ${OBJECTDIR}/mcc_generated_files/tmr1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/tmr1.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
+${OBJECTDIR}/mcc_generated_files/charlcd1.o: mcc_generated_files/charlcd1.c  .generated_files/flags/default/308b65941674d68a4527d3f638c9953116485e7f .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
+	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/charlcd1.o.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/charlcd1.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  mcc_generated_files/charlcd1.c  -o ${OBJECTDIR}/mcc_generated_files/charlcd1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/charlcd1.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/mcc_generated_files/uart2.o: mcc_generated_files/uart2.c  .generated_files/flags/default/ca3e66d7cd05db71f2a41b1683a603a2195d76ad .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
+	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/uart2.o.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/uart2.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  mcc_generated_files/uart2.c  -o ${OBJECTDIR}/mcc_generated_files/uart2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/uart2.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/b1b4ff64cd623e9e189a1964a8df944d9083dcd0 .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/mcc_generated_files/charlcd1.o: mcc_generated_files/charlcd1.c  .generated_files/flags/default/308b65941674d68a4527d3f638c9953116485e7f .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
-	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/charlcd1.o.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/charlcd1.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  mcc_generated_files/charlcd1.c  -o ${OBJECTDIR}/mcc_generated_files/charlcd1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/charlcd1.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/app.o: app.c  .generated_files/flags/default/dc0427e7e7772b9658217f38b0127ff29a7a036 .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/app.o.d 
+	@${RM} ${OBJECTDIR}/app.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  app.c  -o ${OBJECTDIR}/app.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/app.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 else
 ${OBJECTDIR}/mcc_generated_files/pin_manager.o: mcc_generated_files/pin_manager.c  .generated_files/flags/default/c0a912475e166812ea83620da40a69b23bfa90b9 .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
@@ -192,17 +204,29 @@ ${OBJECTDIR}/mcc_generated_files/tmr1.o: mcc_generated_files/tmr1.c  .generated_
 	@${RM} ${OBJECTDIR}/mcc_generated_files/tmr1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  mcc_generated_files/tmr1.c  -o ${OBJECTDIR}/mcc_generated_files/tmr1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/tmr1.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
+${OBJECTDIR}/mcc_generated_files/charlcd1.o: mcc_generated_files/charlcd1.c  .generated_files/flags/default/97f27ad8cc93c356e93ec8d75cbce64407b7373b .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
+	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/charlcd1.o.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/charlcd1.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  mcc_generated_files/charlcd1.c  -o ${OBJECTDIR}/mcc_generated_files/charlcd1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/charlcd1.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/mcc_generated_files/uart2.o: mcc_generated_files/uart2.c  .generated_files/flags/default/735ac2109310609f04ef570a469060357ac366 .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
+	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/uart2.o.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/uart2.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  mcc_generated_files/uart2.c  -o ${OBJECTDIR}/mcc_generated_files/uart2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/uart2.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/55734e2e872af471380155494b93dd7a17a4638a .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/main.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/mcc_generated_files/charlcd1.o: mcc_generated_files/charlcd1.c  .generated_files/flags/default/97f27ad8cc93c356e93ec8d75cbce64407b7373b .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
-	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/charlcd1.o.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/charlcd1.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  mcc_generated_files/charlcd1.c  -o ${OBJECTDIR}/mcc_generated_files/charlcd1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/charlcd1.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/app.o: app.c  .generated_files/flags/default/f14a27ec8ed7c83da1e7de9393da7ad74588749d .generated_files/flags/default/74b5d8bb8da7320f3a834b5ba09ef2c3d4ea4e4a
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/app.o.d 
+	@${RM} ${OBJECTDIR}/app.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  app.c  -o ${OBJECTDIR}/app.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/app.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 

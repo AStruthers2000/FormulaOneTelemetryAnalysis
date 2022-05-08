@@ -45,25 +45,57 @@
 /**
   Section: Included Files
 */
+#include <string.h>
+#include <stdio.h>
 #include "mcc_generated_files/system.h"
-#include "mcc_generated_files/charlcd1.h"
-
+#include "mcc_generated_files/pin_manager.h"
+#include "app.h"  
 /*
-                         Main application
+    Main application
  */
+int adcResult = 0;
+//char bufferWrite[50];
+int shouldWrite = 0;
+    
+void SendResult()
+{
+    //IO_RA1_Toggle();
+    shouldWrite = 1;
+    return;
+}
+
 int main(void)
 {
+
     // initialize the device
     SYSTEM_Initialize();
-    CHARLCD1_Initialize();
+    /*Clear screen and set cursor to the beginning of the current line*/
+    /*
+    sprintf(bufferWrite, "\033[2J");
+    Write2UART(bufferWrite, strlen(bufferWrite));
+    sprintf(bufferWrite, "\033[0;0H");
+    Write2UART(bufferWrite, strlen(bufferWrite));
+    sprintf(bufferWrite, "MCC: It's Easy!\r\nLab 1\r\n\r\n");
+    Write2UART(bufferWrite, strlen(bufferWrite));
+     */
+    /*Start the timer with Period 1s */
+    TMR1_Start();
+    /*Select the ADC channel to which Potentiometer is connected*/
 
-    while (1)
+    while(1)
     {
-        // Add your application code
-        
-    }
+        /*
+        if(TMR1_GetElapsedThenClear() && shouldWrite)
+        {
+            IO_RA6_Toggle();
 
-    return 1;
+            sprintf(bufferWrite, "Hello from the MCC\n");
+            Write2UART(bufferWrite, strlen(bufferWrite));   //Analog voltage value is transmitted over UART
+            shouldWrite = 0;
+        }*/
+        ReadUART();
+    }
+    return -1;
 }
 /**
  End of File

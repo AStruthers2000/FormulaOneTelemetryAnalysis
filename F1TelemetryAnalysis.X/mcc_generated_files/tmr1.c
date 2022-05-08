@@ -157,11 +157,17 @@ uint16_t TMR1_Counter16BitGet( void )
     return( TMR1 );
 }
 
-
+int count = 0;
 void __attribute__ ((weak)) TMR1_CallBack(void)
 {
     // Add your custom callback code here
     IO_RA0_Toggle();
+    SendResult();
+    //CHARLCD1_ClearScreen();
+    //printf("%d", count);
+    //CHARLCD1_ClearScreen();
+    //ReadUART();
+    count++;
 }
 
 void  TMR1_SetInterruptHandler(void (* InterruptHandler)(void))
