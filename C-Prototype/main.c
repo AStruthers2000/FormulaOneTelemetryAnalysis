@@ -265,7 +265,6 @@ struct __attribute__((__packed__)) CustomDataPacket{
 };
 
 int main(void){
-    printf("%d", sizeof(uint64_t));
     struct sockaddr_in si_other;
     int s, slen=sizeof(si_other);
 
@@ -290,14 +289,13 @@ int main(void){
     si_other.sin_port = htons(PORT);
     si_other.sin_addr.S_un.S_addr = inet_addr(SERVER);
 
-    bind(s, (struct sockaddr *)&si_other, sizeof si_other);
+    int __attribute__((__unused__)) result = bind(s, (struct sockaddr *)&si_other, sizeof si_other);
 
     int packetUpdateCount = 0;
     struct CustomDataPacket customDataPacket = {};
 
     uint16_t topSpeed = 0;
     int dataSamples = 0;
-    double averageSpeed = 0.0f;
 
     int currentLap;
 
@@ -320,7 +318,8 @@ int main(void){
 
             case 1:
                 sessionData = (struct PacketSessionData *) &buf[0];
-
+                customDataPacket.trackID = sessionData->m_trackId;
+                customDataPacket.sessionTime = sessionData->m_header.m_sessionTime;
 
                 packetUpdateCount++;
                 break;
@@ -340,6 +339,30 @@ int main(void){
                 eventData = (struct PacketEventData *) &buf[0];
 
 
+
+                //uint8_t startCode[4] = {'L', 'G', 'O', 'T'};
+                //uint8_t endCode[4] = {'S', 'E', 'N', 'D'};
+
+                if(eventData->m_eventStringCode[0] == 'L' &&
+                    eventData->m_eventStringCode[1] == 'G' &&
+                    eventData->m_eventStringCode[2] == 'O' &&
+                    eventData->m_eventStringCode[3] == 'T'){
+
+                    printf("Start\n");
+                    dataSamples = 0;
+                    customDataPacket.averageSpeed = 0;
+
+                }
+
+                if(eventData->m_eventStringCode[0] == 'S' &&
+                   eventData->m_eventStringCode[1] == 'E' &&
+                   eventData->m_eventStringCode[2] == 'N' &&
+                   eventData->m_eventStringCode[3] == 'D'){
+
+                    printf("Finish\n");
+
+                }
+
                 packetUpdateCount++;
                 break;
 
@@ -348,7 +371,7 @@ int main(void){
 
                 telemData = (struct PacketCarTelemetryData *) &buf[0];
 
-                int isReverse = telemData->m_carTelemetryData[telemData->m_header.m_playerCarIndex].m_gear;
+                char isReverse = telemData->m_carTelemetryData[telemData->m_header.m_playerCarIndex].m_gear;
 
                 int rawSpeed = telemData->m_carTelemetryData[telemData->m_header.m_playerCarIndex].m_speed;
                 if(isReverse == -1){
@@ -368,7 +391,7 @@ int main(void){
                 }
 
                 customDataPacket.topSpeed = topSpeed;
-                
+
                 packetUpdateCount++;
                 break;
             default:
@@ -379,18 +402,22 @@ int main(void){
 
         if(packetUpdateCount >= 4){
             packetUpdateCount = 0;
+            //send custom data packet out to Python script
+            //printf("Just sent customDataPacket\n");
 
-            printf("Current lap: %d --- current sector: %d --- speed: %d --- average speed: %4.1f --- top speed: %d\n", customDataPacket.currentLap, customDataPacket.currentSector, customDataPacket.speed, customDataPacket.averageSpeed, customDataPacket.topSpeed);
+            //printf("Current lap: %d --- current sector: %d --- speed: %d --- average speed: %4.1f --- top speed: %d\n", customDataPacket.currentLap, customDataPacket.currentSector, customDataPacket.speed, customDataPacket.averageSpeed, customDataPacket.topSpeed);
 
 
             if(customDataPacket.currentLap > currentLap){
+
+                printf("Current lap: %d --- average speed last lap: %4.1f\n", customDataPacket.currentLap, customDataPacket.averageSpeed);
+
                 dataSamples = 0;
                 customDataPacket.averageSpeed = 0;
             }
 
             currentLap = customDataPacket.currentLap;
-            //send custom data packet out to Python script
-            //printf("Just sent customDataPacket\n");
+
 
 
         }
