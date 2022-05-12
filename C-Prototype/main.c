@@ -5,9 +5,12 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
-#define SERVER "127.0.0.1"
+#define RECV_ADDR "127.0.0.1"
 #define BUFLEN 4096
-#define PORT 12345
+#define RECV_PORT 12345
+
+#define SEND_ADDR "127.0.0.1"
+#define SEND_PORT 12346
 
 //header packet
 struct __attribute__((__packed__)) PacketHeader{
@@ -247,7 +250,7 @@ struct __attribute__((__packed__)) PacketCarTelemetryData
 };
 
 
-//custom data packet
+//custom data packet --  36 bytes
 struct __attribute__((__packed__)) CustomDataPacket{
     int         speed;
     int         topSpeed;
@@ -265,11 +268,11 @@ struct __attribute__((__packed__)) CustomDataPacket{
 };
 
 int main(void){
-    struct sockaddr_in si_other;
-    int s, slen=sizeof(si_other);
+    struct sockaddr_in si_other_in;
+    int s_in, slen_in=sizeof(si_other_in);
 
     char buf[BUFLEN];
-    char message[BUFLEN];
+
     WSADATA wsa;
 
     printf("\nInitialising Winsock...\n");
@@ -279,17 +282,31 @@ int main(void){
     }
     printf("Initialized\n");
 
-    if((s= socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == SOCKET_ERROR){
-        printf("Socket failed with error code: %d", WSAGetLastError());
+    if((s_in = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == SOCKET_ERROR){
+        printf("Socket in failed with error code: %d", WSAGetLastError());
         exit(EXIT_FAILURE);
     }
 
-    memset((char *) &si_other, 0, sizeof(si_other));
-    si_other.sin_family = AF_INET;
-    si_other.sin_port = htons(PORT);
-    si_other.sin_addr.S_un.S_addr = inet_addr(SERVER);
+    memset((char *) &si_other_in, 0, sizeof(si_other_in));
+    si_other_in.sin_family = AF_INET;
+    si_other_in.sin_port = htons(RECV_PORT);
+    si_other_in.sin_addr.S_un.S_addr = inet_addr(RECV_ADDR);
 
-    int __attribute__((__unused__)) result = bind(s, (struct sockaddr *)&si_other, sizeof si_other);
+    int __attribute__((__unused__)) bind_result = bind(s_in, (struct sockaddr *)&si_other_in, sizeof si_other_in);
+
+    struct sockaddr_in si_other_out;
+    int s_out, slen_out=sizeof(si_other_out);
+    char message[BUFLEN];
+    if((s_out = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == SOCKET_ERROR){
+        printf("Socket out failed with error code: %d", WSAGetLastError());
+        exit(EXIT_FAILURE);
+    }
+    memset((char *) &si_other_out, 0, sizeof (si_other_out));
+    si_other_out.sin_family = AF_INET;
+    si_other_out.sin_port = htons(SEND_PORT);
+    si_other_out.sin_addr.S_un.S_addr = inet_addr(SEND_ADDR);
+    int __attribute__((__unused__)) connect_result = connect(s_out, (struct sockaddr *) &si_other_out, sizeof si_other_out);
+
 
     int packetUpdateCount = 0;
     struct CustomDataPacket customDataPacket = {};
@@ -303,7 +320,7 @@ int main(void){
     while(1){
         memset(buf, '\0', BUFLEN);
         //try to receive data
-        if(recvfrom(s, buf, BUFLEN, 0, (struct sockaddr *) &si_other, &slen) == SOCKET_ERROR){
+        if(recvfrom(s_in, buf, BUFLEN, 0, (struct sockaddr *) &si_other_in, &slen_in) == SOCKET_ERROR){
             printf("recvfrom failed with error code: %d", WSAGetLastError());
             exit(EXIT_FAILURE);
         }
@@ -403,6 +420,18 @@ int main(void){
         if(packetUpdateCount >= 4){
             packetUpdateCount = 0;
             //send custom data packet out to Python script
+
+
+            if(sendto(s_out,
+                      (struct CustomDataPacket*) &customDataPacket,
+                              (sizeof(customDataPacket)),
+                              0,
+                              (struct sockaddr *) &si_other_out,
+                                      sizeof(si_other_out)
+                    )==SOCKET_ERROR){
+                printf("sendto failed with error code: %d", WSAGetLastError());
+                exit(EXIT_FAILURE);
+            }
             //printf("Just sent customDataPacket\n");
 
             //printf("Current lap: %d --- current sector: %d --- speed: %d --- average speed: %4.1f --- top speed: %d\n", customDataPacket.currentLap, customDataPacket.currentSector, customDataPacket.speed, customDataPacket.averageSpeed, customDataPacket.topSpeed);
@@ -424,7 +453,7 @@ int main(void){
         //puts(buf);
     }
 
-    closesocket(s);
+    closesocket(s_in);
     WSACleanup();
 
     return 0;
