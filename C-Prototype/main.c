@@ -262,6 +262,13 @@ struct __attribute__((__packed__)) CustomDataPacket{
     uint8_t     currentLap;
     uint8_t     currentSector;
     uint32_t    currentLapTimeInMS;
+    uint32_t    currentSector1Time;
+    uint32_t    currentSector2Time;
+    uint32_t    currentSector3Time;
+    uint32_t    bestSector1Time;
+    uint32_t    bestSector2Time;
+    uint32_t    bestSector3Time;
+    uint32_t    theoreticalLapTime;
     float       sessionTime;
     int8_t      trackID;
     //add more as necessary
@@ -344,9 +351,51 @@ int main(void){
             case 2:
                 lapData = (struct PacketLapData *) &buf[0];
 
+                if(lapData->m_lapData[lapData->m_header.m_playerCarIndex].m_sector + 1 >= customDataPacket.currentSector ||
+                   lapData->m_lapData[lapData->m_header.m_playerCarIndex].m_currentLapNum > currentLap){
+                    switch(lapData->m_lapData[lapData->m_header.m_playerCarIndex].m_sector){
+                        case 0:
+                            if(customDataPacket.currentSector3Time > customDataPacket.bestSector3Time){
+                                customDataPacket.bestSector3Time = customDataPacket.currentSector3Time;
+                            }
+                            break;
+                        case 1:
+                            if(customDataPacket.currentSector1Time > customDataPacket.bestSector1Time){
+                                customDataPacket.bestSector1Time = customDataPacket.currentSector1Time;
+                            }
+                            break;
+                        case 2:
+                            if(customDataPacket.currentSector2Time > customDataPacket.bestSector2Time){
+                                customDataPacket.bestSector2Time = customDataPacket.currentSector2Time;
+                            }
+                            break;
+                        default:
+                            printf("In a sector that doesn't exist\n");
+                            break;
+                    }
+
+                }
+
                 customDataPacket.currentLapTimeInMS = lapData->m_lapData[lapData->m_header.m_playerCarIndex].m_currentLapTimeInMS;
                 customDataPacket.currentLap = lapData->m_lapData[lapData->m_header.m_playerCarIndex].m_currentLapNum;
                 customDataPacket.currentSector = lapData->m_lapData[lapData->m_header.m_playerCarIndex].m_sector+1;
+
+                switch(lapData->m_lapData[lapData->m_header.m_playerCarIndex].m_sector){
+                    case 0:
+                        customDataPacket.currentSector1Time = customDataPacket.currentLapTimeInMS;
+                        break;
+                    case 1:
+                        customDataPacket.currentSector2Time = customDataPacket.currentLapTimeInMS - customDataPacket.currentSector1Time;
+                        break;
+                    case 2:
+                        customDataPacket.currentSector3Time = customDataPacket.currentLapTimeInMS - customDataPacket.currentSector2Time - customDataPacket.currentSector1Time;
+                        break;
+                    default:
+                        printf("In a sector that doesn't exist\n");
+                        break;
+                }
+
+
 
 
                 packetUpdateCount++;
@@ -421,6 +470,11 @@ int main(void){
             packetUpdateCount = 0;
             //send custom data packet out to Python script
 
+            if(customDataPacket.currentLap > 1) {
+                customDataPacket.theoreticalLapTime =
+                        customDataPacket.bestSector1Time + customDataPacket.bestSector2Time +
+                        customDataPacket.bestSector3Time;
+            }
 
             if(sendto(s_out,
                       (struct CustomDataPacket*) &customDataPacket,

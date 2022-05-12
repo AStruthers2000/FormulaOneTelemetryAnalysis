@@ -7,5 +7,5 @@ serv.bind(('', 12346))
 while True:
     msg, addr = serv.recvfrom(65565)
     #print(msg)
-    data = unpack("<iifBfffBBIfB", msg)
+    data = unpack("<iifBfffBBIIIIIIIIfB", msg)
     print(data)
