@@ -85,15 +85,19 @@ def animate(i):
 
 
             ax[0][1].plot(xdata, xdata, label="Current Lap Time (MS)", color='g')
+
+            ax[0][1].axvline(x=customData.currentSector1Time, color='red', linestyle='dashed')
+            ax[0][1].axvline(x=customData.currentSector2Time + customData.currentSector1Time, color='blue', linestyle='dashed')
+            ax[0][1].axvline(x=customData.currentSector3Time + customData.currentSector2Time + customData.currentSector1Time, color='yellow', linestyle='dashed')
             
-            ax[0][1].axhline(y=customData.bestSector1Time, color='r', linestyle='-')
-            ax[0][1].axhline(y=customData.bestSector2Time + customData.bestSector1Time, color='b', linestyle='-')
+            #ax[0][1].axhline(y=customData.bestSector1Time, color='r', linestyle='-')
+            #ax[0][1].axhline(y=customData.bestSector2Time + customData.bestSector1Time, color='b', linestyle='-')
             #ax[1].axhline(y=customData.bestSector3Time + customData.bestSector2Time + customData.bestSector1Time, color='y', linestyle='-')
             ax[0][1].axvline(x=customData.bestSector1Time, color='r', linestyle='-')
             ax[0][1].axvline(x=customData.bestSector2Time + customData.bestSector1Time, color='b', linestyle='-')
             #ax[1].axvline(x=customData.bestSector3Time + customData.bestSector2Time + customData.bestSector1Time, color='y', linestyle='-')
 
-            ax[0][1].axhline(y=customData.theoreticalLapTime, color='purple', linestyle='-')
+            #ax[0][1].axhline(y=customData.theoreticalLapTime, color='purple', linestyle='-')
             ax[0][1].axvline(x=customData.theoreticalLapTime, color='purple', linestyle='-')
             
             ax[0][1].legend(loc="upper left")
