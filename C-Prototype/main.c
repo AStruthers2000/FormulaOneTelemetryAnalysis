@@ -355,17 +355,17 @@ int main(void){
                    lapData->m_lapData[lapData->m_header.m_playerCarIndex].m_currentLapNum > currentLap){
                     switch(lapData->m_lapData[lapData->m_header.m_playerCarIndex].m_sector){
                         case 0:
-                            if(customDataPacket.currentSector3Time > customDataPacket.bestSector3Time){
+                            if(customDataPacket.currentSector3Time < customDataPacket.bestSector3Time || customDataPacket.bestSector3Time == 0){
                                 customDataPacket.bestSector3Time = customDataPacket.currentSector3Time;
                             }
                             break;
                         case 1:
-                            if(customDataPacket.currentSector1Time > customDataPacket.bestSector1Time){
+                            if(customDataPacket.currentSector1Time < customDataPacket.bestSector1Time || customDataPacket.bestSector1Time == 0){
                                 customDataPacket.bestSector1Time = customDataPacket.currentSector1Time;
                             }
                             break;
                         case 2:
-                            if(customDataPacket.currentSector2Time > customDataPacket.bestSector2Time){
+                            if(customDataPacket.currentSector2Time < customDataPacket.bestSector2Time || customDataPacket.bestSector2Time == 0){
                                 customDataPacket.bestSector2Time = customDataPacket.currentSector2Time;
                             }
                             break;
